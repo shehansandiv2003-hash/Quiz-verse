@@ -1,2 +1,2 @@
-# Quiz verse-Dynamic-quiz-and-Trivia-game
+# Quiz-verse
 Web Technologies Pair Project
