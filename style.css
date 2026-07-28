@@ -1,9 +1,5 @@
 /* =========================================================
    Quiz-Verse — external stylesheet
-   Palette:  #0F1225 (space navy)  #171B34 (card)
-             #FFB84D (amber - accent)  #7C9EFF (soft blue)
-             #EDEFFB (text)  #9AA0C3 (muted)
-   Fonts:    Sora (display) / Inter (body)
    ========================================================= */
 
 :root {
@@ -22,6 +18,7 @@
 }
 
 * { box-sizing: border-box; }
+.text-muted{color: var(--muted) !important;}
 
 body {
   background-color: var(--bg);
@@ -130,7 +127,7 @@ a { text-decoration: none; }
   max-width: 500px;
 }
 
-/* Orbit graphic — signature element, echoes the wireframe's circle+dots */
+/* Orbit graphic */
 .orbit-wrap {
   position: relative;
   width: 100%;
@@ -183,7 +180,7 @@ a { text-decoration: none; }
   .orbit-ring.ring-2, .orbit-ring.ring-3 { animation: none; }
 }
 
-/* ---------- Stats strip ---------- */
+/* Stats strip  */
 .stats-strip {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -204,7 +201,7 @@ a { text-decoration: none; }
   text-transform: uppercase;
 }
 
-/* ---------- Cards ---------- */
+/* Cards  */
 .section-title {
   font-weight: 700;
   margin-bottom: 6px;
@@ -242,12 +239,12 @@ a { text-decoration: none; }
   margin-bottom: 14px;
 }
 
-/* ---------- How it works ---------- */
+/*  How it works */
 .step-circle {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  border: 1px solid var(--accent);
+  border: 2px solid var(--accent);
   color: var(--accent);
   display: flex;
   align-items: center;
@@ -256,7 +253,7 @@ a { text-decoration: none; }
   margin: 0 auto 14px;
 }
 
-/* ---------- CTA ---------- */
+/* CTA  */
 .cta-band {
   background: linear-gradient(135deg, var(--bg-card), #1c2145);
   border: 1px solid var(--border);
@@ -265,7 +262,7 @@ a { text-decoration: none; }
   text-align: center;
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 footer {
   border-top: 1px solid var(--border);
   padding: 40px 0 20px;
