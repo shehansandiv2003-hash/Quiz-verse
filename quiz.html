@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
   <!-- ============ NAVBAR ============ -->
   <nav class="navbar navbar-expand-lg navbar-qv sticky-top">
@@ -33,52 +33,82 @@
     </div>
   </nav>
 
-  <main class="container py-5" id="quizRoot">
+  <main class="container py-5 flex-grow-1" id="quizRoot">
 
     <p id="quizLoading" class="text-center text-muted">Loading questions&hellip; </p>
 
     <!-- ============ QUIZ PANEL ============ -->
-    <div id="quizPanel" style="display:none;">
+    <div id="quizPanel">
 
-      <div class="quiz-topbar d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-        <span class="text-muted small">Category:</span>
-        <span id="qNumber" class="fw-semibold"></span>
+      
+      <div class="d-flex justify-content-center gap-3 mb-5 d-none d-md-flex" id="topProgressBubbles">
+        
       </div>
 
-      <div class="row g-4">
-        <!-- Question + answers -->
+      <div class="row g-4 align-items-start">
+        
+        <!-- ================= LEFT COLUMN ================= -->
         <div class="col-lg-7">
-          <p class="text-muted small text-uppercase mb-1">Question</p>
-          <h2 id="qText" class="h4 mb-4"></h2>
-          <div id="answerOptions"></div>
-
-          <div id="feedbackBox" class="feedback-box mt-3"></div>
-
-          <div class="d-flex justify-content-between mt-4">
-            <button id="prevBtn" class="btn btn-outline-qv px-4">Previous</button>
-            <button id="nextBtn" class="btn btn-accent px-4">Next Question</button>
+          
+          <!-- 1. ACTIVE QUESTION AREA  -->
+          <div id="quizQuestionArea">
+            <p id="qNumber" class="text-muted small text-uppercase mb-2">Question 1 of 10</p>
+            <h2 id="qText" class="h5 mb-4 fw-semibold mt-3"></h2>
+            <div id="answerOptions"></div>
+            <div id="feedbackBox" class="feedback-box mt-3"></div>
+            <div class="d-flex justify-content-between mt-5">
+              <button id="prevBtn" class="btn btn-outline-qv px-4">Previous</button>
+              <button id="nextBtn" class="btn btn-accent px-4 text-white">Next Question</button>
+            </div>
           </div>
-        </div>
 
-        <!-- Timer / score / nav grid -->
+          <!-- 2. RESULT PANEL (Visible right now for testing) -->
+          <div id="resultPanel" class="text-center mt-5">
+            <div class="qv-card mx-auto" style="padding: 3rem 1.5rem;">
+              
+              <div class="d-flex flex-column align-items-center justify-content-center mx-auto mb-4"
+                   style="border: 2px solid var(--border); border-radius: 50%; width: 140px; height: 140px;">
+                <div id="resultPercent" class="h3 fw-semibold mb-0">0%</div>
+                <div id="resultFraction" class="text-muted small mt-1">0/10</div>
+              </div>
+              
+              <p class="mt-3 mb-1 fw-semibold">Nice work - check your rank on the leaderboard!</p>
+              <p class="text-muted small mb-4 pb-2">Your result has been added to today's board.</p>
+              
+              <div class="d-flex justify-content-center gap-3">
+                <button id="retryBtn" class="btn btn-outline-qv px-4">Try Another Quiz</button>
+                <a href="index.html" class="btn btn-accent text-white px-4">Back Home</a>
+              </div>
+
+            </div>
+          </div>
+
+        </div> <!-- END OF LEFT COLUMN -->
+
+        <!-- ================= RIGHT COLUMN ================= -->
         <div class="col-lg-5">
-          <div class="qv-card mb-3 text-center">
+          
+          <!-- Timer Panel -->
+          <div class="qv-card mb-4 text-center">
             <p class="text-muted small text-uppercase mb-3">Time left</p>
-            <div class="timer-ring-wrap">
+            <div class="timer-ring-wrap mx-auto position-relative" style="width: 130px; height: 130px;">
               <svg width="130" height="130">
-                <circle class="timer-track" cx="65" cy="65" r="54" stroke-width="8" fill="none"/>
-                <circle id="timerRingProgress" class="timer-progress" cx="65" cy="65" r="54"
-                        stroke-width="8" fill="none"
-                        stroke-dasharray="339.29" stroke-dashoffset="0"/>
+                <circle cx="65" cy="65" r="54" stroke-width="8" stroke="var(--border)" fill="none"/>
+                <circle id="timerRingProgress" cx="65" cy="65" r="54"
+                        stroke-width="8" stroke="var(--accent)" fill="none"
+                        stroke-dasharray="339.29" stroke-dashoffset="0"
+                        style="transition: stroke-dashoffset 1s linear;"/>
               </svg>
-              <div class="timer-text">
-                <span id="timerNum" class="t-num">20</span>
-                <span class="t-label">SECONDS</span>
+              <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column">
+                <span id="timerNum" class="t-num fw-bold fs-4">20</span>
               </div>
             </div>
           </div>
 
-          <div class="qv-card mb-3">
+    
+          
+          <!-- Live Score Panel -->
+          <div class="qv-card mb-4">
             <div class="d-flex justify-content-between small text-muted mb-2">
               <span class="text-uppercase">Live score</span>
               <span>Correct so far</span>
@@ -91,42 +121,36 @@
             </div>
           </div>
 
-          <div class="qv-card">
+          <!-- Jump to Question Grid -->
+          <div class="qv-card ">
             <p class="text-muted small text-uppercase mb-3">Jump to question</p>
-            <div id="questionNav" class="d-flex flex-wrap gap-2"></div>
+            <div id="questionNav" class="d-flex flex-wrap gap-2">
+               
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+               <div class="rounded-circle bg-white" style="width:24px; height:24px;"></div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ============ RESULT PANEL (shown after final question) ============ -->
-    <div id="resultPanel" class="text-center" style="display:none;">
-      <div class="qv-card mx-auto" style="max-width: 420px;">
-        <div class="result-ring-wrap d-flex align-items-center justify-content-center mx-auto"
-             style="border: 8px solid var(--accent); border-radius: 50%;">
-          <div>
-            <div id="resultPercent" class="h3 mb-0"></div>
-            <div id="resultFraction" class="text-muted small"></div>
-          </div>
-        </div>
-        <p class="mt-4 mb-1 fw-semibold">Nice work — check your rank on the leaderboard!</p>
-        <p class="text-muted small">Your result has been added to today's board.</p>
-        <div class="d-flex justify-content-center gap-3 mt-3">
-          <button id="retryBtn" class="btn btn-outline-qv px-4">Try Another Quiz</button>
-          <a href="index.html" class="btn btn-accent px-4">Back Home</a>
-        </div>
-      </div>
-    </div>
-
+        </div> 
+      </div> 
+    </div> 
   </main>
 
-  <footer>
-    <div class="container text-center">
-      <p class="small mb-0">&copy; 2026 Quiz-Verse </p>
+  <!-- ============ FOOTER ============ -->
+  <footer class="mt-auto quiz-footer">
+    <div class="container text-center py-3">
+      <p class="small mb-0 text-muted">&copy; 2026 Quiz-Verse </p>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
-</body>
-</html>
+  </body>
+  </html>
