@@ -29,7 +29,7 @@
         <ul class="navbar-nav mx-auto">
           <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link js-scroll" href="#categories">Categories</a></li>
-          <li class="nav-item"><a class="nav-link" href="quiz.html">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#leaderboardModal">Leaderboard</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
         <div class="d-flex gap-2">
@@ -177,7 +177,7 @@
           <h3 class="h6 text-light">Explore</h3>
           <p class="small mb-1"><a href="index.html">Home</a></p>
           <p class="small mb-1"><a href="#categories" class="js-scroll">Categories</a></p>
-          <p class="small mb-1"><a href="quiz.html">Leaderboard</a></p>
+          <p class="small mb-1"><a href="#" data-bs-toggle="modal" data-bs-target="#leaderboardModal">Leaderboard</a></p>
         </div>
         <div class="col-6 col-md-3">
           <h3 class="h6 text-light">Support</h3>
@@ -238,6 +238,22 @@
             </div>
             <button type="submit" class="btn btn-accent w-100 mt-3">Sign Up</button>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ================= LEADERBOARD MODAL ================= -->
+  <div class="modal fade" id="leaderboardModal" tabindex="-1" aria-labelledby="leaderboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
+        <div class="modal-header" style="border-bottom-color: var(--border);">
+          <h5 class="modal-title" id="leaderboardModalLabel" style="font-family: 'Sora', sans-serif;">Top Explorers</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center py-5">
+          <h4 class="text-white mb-3">Leaderboard Coming Soon!</h4>
+          <p class="text-muted">Keep practicing your quizzes to secure your spot at the top.</p>
+          <button type="button" class="btn btn-outline-qv mt-3" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
