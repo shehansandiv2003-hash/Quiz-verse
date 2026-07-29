@@ -1,0 +1,132 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Play a Quiz | Quiz-Verse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar navbar-expand-lg navbar-qv sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-mark"><span></span></span> Quiz-Verse
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="quiz.html">Quiz</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <a href="index.html" class="btn btn-outline-qv btn-sm px-3">Exit Quiz</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5" id="quizRoot">
+
+    <p id="quizLoading" class="text-center text-muted">Loading questions&hellip; </p>
+
+    <!-- ============ QUIZ PANEL ============ -->
+    <div id="quizPanel" style="display:none;">
+
+      <div class="quiz-topbar d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <span class="text-muted small">Category:</span>
+        <span id="qNumber" class="fw-semibold"></span>
+      </div>
+
+      <div class="row g-4">
+        <!-- Question + answers -->
+        <div class="col-lg-7">
+          <p class="text-muted small text-uppercase mb-1">Question</p>
+          <h2 id="qText" class="h4 mb-4"></h2>
+          <div id="answerOptions"></div>
+
+          <div id="feedbackBox" class="feedback-box mt-3"></div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <button id="prevBtn" class="btn btn-outline-qv px-4">Previous</button>
+            <button id="nextBtn" class="btn btn-accent px-4">Next Question</button>
+          </div>
+        </div>
+
+        <!-- Timer / score / nav grid -->
+        <div class="col-lg-5">
+          <div class="qv-card mb-3 text-center">
+            <p class="text-muted small text-uppercase mb-3">Time left</p>
+            <div class="timer-ring-wrap">
+              <svg width="130" height="130">
+                <circle class="timer-track" cx="65" cy="65" r="54" stroke-width="8" fill="none"/>
+                <circle id="timerRingProgress" class="timer-progress" cx="65" cy="65" r="54"
+                        stroke-width="8" fill="none"
+                        stroke-dasharray="339.29" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-text">
+                <span id="timerNum" class="t-num">20</span>
+                <span class="t-label">SECONDS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="qv-card mb-3">
+            <div class="d-flex justify-content-between small text-muted mb-2">
+              <span class="text-uppercase">Live score</span>
+              <span>Correct so far</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span id="liveScore" class="h5 mb-0">0/10</span>
+            </div>
+            <div class="progress mt-2" style="height:6px; background:var(--border);">
+              <div id="scoreBar" class="progress-bar" style="width:0%; background:var(--accent);"></div>
+            </div>
+          </div>
+
+          <div class="qv-card">
+            <p class="text-muted small text-uppercase mb-3">Jump to question</p>
+            <div id="questionNav" class="d-flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ RESULT PANEL (shown after final question) ============ -->
+    <div id="resultPanel" class="text-center" style="display:none;">
+      <div class="qv-card mx-auto" style="max-width: 420px;">
+        <div class="result-ring-wrap d-flex align-items-center justify-content-center mx-auto"
+             style="border: 8px solid var(--accent); border-radius: 50%;">
+          <div>
+            <div id="resultPercent" class="h3 mb-0"></div>
+            <div id="resultFraction" class="text-muted small"></div>
+          </div>
+        </div>
+        <p class="mt-4 mb-1 fw-semibold">Nice work — check your rank on the leaderboard!</p>
+        <p class="text-muted small">Your result has been added to today's board.</p>
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <button id="retryBtn" class="btn btn-outline-qv px-4">Try Another Quiz</button>
+          <a href="index.html" class="btn btn-accent px-4">Back Home</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="container text-center">
+      <p class="small mb-0">&copy; 2026 Quiz-Verse </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

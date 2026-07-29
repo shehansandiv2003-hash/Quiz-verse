@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz-Verse | Explore the Universe of Knowledge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quiz-Verse is a dynamic trivia game with instant feedback and a live leaderboard.">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar navbar-expand-lg navbar-qv sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-mark"><span></span></span> Quiz-Verse
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link js-scroll" href="#categories">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="quiz.html">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-qv btn-sm px-3" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
+          <button type="button" class="btn btn-accent btn-sm px-3" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="eyebrow">150+ QUIZZES</span>
+          <h1>Explore the whole universe of knowledge, one quiz at a time.</h1>
+          <p class="lead my-3">Pick a category, answer against the clock, and see exactly how you scored — every game is generated fresh, so there's always something new to play.</p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="quiz.html" class="btn btn-accent px-4 py-2">Start a Quiz</a>
+            <a href="#categories" class="btn btn-outline-qv px-4 py-2 js-scroll">Browse Categories</a>
+          </div>
+          <p class="text-muted small mt-3">1,200+ players already exploring</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="orbit-wrap">
+            <div class="orbit-ring"></div>
+            <div class="orbit-ring ring-2"></div>
+            <div class="orbit-ring ring-3"></div>
+            <div class="orbit-core"></div>
+            <div class="orbit-dot" style="top: 8%; left: 78%;"></div>
+            <div class="orbit-dot" style="top: 72%; left: 14%;"></div>
+            <div class="orbit-dot" style="top: 68%; left: 76%; background: var(--accent);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ STATS STRIP ============ -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="row text-center g-3">
+        <div class="col-6 col-md-3">
+          <div class="stat-num">150+</div><div class="stat-label">Quizzes</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-num">4</div><div class="stat-label">Categories</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-num">-</div><div class="stat-label">Players</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-num">0.0★</div><div class="stat-label">Avg Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POPULAR CATEGORIES ============ -->
+  <section class="py-5" id="categories">
+    <div class="container">
+      <h2 class="section-title text-center">Popular categories</h2>
+      <p class="section-sub text-center">Pick a topic to jump straight into a quiz</p>
+      <div class="row g-4">
+        <div class="col-6 col-lg-3">
+          <div class="qv-card">
+            <div class="category-icon">GE</div>
+            <h3 class="h6 mb-1">Geography</h3>
+            <p class="text-muted small mb-0">Countries, capitals & landmarks</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="qv-card">
+            <div class="category-icon">HI</div>
+            <h3 class="h6 mb-1">History</h3>
+            <p class="text-muted small mb-0">People, events & eras</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="qv-card">
+            <div class="category-icon">SC</div>
+            <h3 class="h6 mb-1">Science</h3>
+            <p class="text-muted small mb-0">Space, biology & physics</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="qv-card">
+            <div class="category-icon">IT</div>
+            <h3 class="h6 mb-1">ICT</h3>
+            <p class="text-muted small mb-0">Web, hardware & logic</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="section-title text-center">How it works</h2>
+      <p class="section-sub text-center">Three steps to your score</p>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="step-circle">01</div>
+          <h3 class="h6">Pick a category</h3>
+          <p class="text-muted small">Choose a topic and difficulty that suits you.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-circle">02</div>
+          <h3 class="h6">Answer the questions</h3>
+          <p class="text-muted small">Beat the timer and get instant feedback.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-circle">03</div>
+          <h3 class="h6">Get your score</h3>
+          <p class="text-muted small">See your result and climb the leaderboard.</p>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="quiz.html" class="btn btn-accent px-4 py-2">Start a Quiz</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="cta-band">
+        <h2 class="mb-3">Ready to test what you know?</h2>
+        <a href="quiz.html" class="btn btn-accent px-4 py-2">Start a Quiz</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <a class="navbar-brand" href="index.html"><span class="brand-mark"><span></span></span> Quiz-Verse</a>
+          <p class="small mt-2">A mini project exploring dynamic trivia and timed quizzes.</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3 class="h6 text-light">Explore</h3>
+          <p class="small mb-1"><a href="index.html">Home</a></p>
+          <p class="small mb-1"><a href="#categories" class="js-scroll">Categories</a></p>
+          <p class="small mb-1"><a href="quiz.html">Leaderboard</a></p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3 class="h6 text-light">Support</h3>
+          <p class="small mb-1"><a href="contact.html">Contact Us</a></p>
+          <p class="small mb-1"><a href="contact.html#faq">FAQ</a></p>
+        </div>
+      </div>
+      <hr style="border-color: var(--border);">
+      <p class="small mb-0">&copy; 2026 Quiz-Verse</p>
+    </div>
+  </footer>
+  <!-- ================= LOG IN MODAL ================= -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
+        <div class="modal-header" style="border-bottom-color: var(--border);">
+          <h5 class="modal-title" id="loginModalLabel" style="font-family: 'Sora', sans-serif;">Log In</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label text-muted">Email address</label>
+              <input type="email" class="form-control form-control-qv" id="loginEmail" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label text-muted">Password</label>
+              <input type="password" class="form-control form-control-qv" id="loginPassword">
+            </div>
+            <button type="submit" class="btn btn-accent w-100 mt-3">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SIGN UP MODAL ================= -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
+        <div class="modal-header" style="border-bottom-color: var(--border);">
+          <h5 class="modal-title" id="signupModalLabel" style="font-family: 'Sora', sans-serif;">Create an Account</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="signupName" class="form-label text-muted">Full Name</label>
+              <input type="text" class="form-control form-control-qv" id="signupName" placeholder="John Doe">
+            </div>
+            <div class="mb-3">
+              <label for="signupEmail" class="form-label text-muted">Email address</label>
+              <input type="email" class="form-control form-control-qv" id="signupEmail" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="signupPassword" class="form-label text-muted">Password</label>
+              <input type="password" class="form-control form-control-qv" id="signupPassword">
+            </div>
+            <button type="submit" class="btn btn-accent w-100 mt-3">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
