@@ -59,7 +59,7 @@ const FALLBACK_QUESTIONS = [
       prevBtn: document.getElementById('prevBtn'),
       nextBtn: document.getElementById('nextBtn'),
       resultPanel: document.getElementById('resultPanel'),
-      quizPanel: document.getElementById('quizPanel'),
+      quizPanel: document.getElementById('quizQuestionArea'),
       resultPercent: document.getElementById('resultPercent'),
       resultFraction: document.getElementById('resultFraction'),
       loadingMsg: document.getElementById('quizLoading')
@@ -76,7 +76,7 @@ const FALLBACK_QUESTIONS = [
       return arr.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).map(v => v[1]);
     }
 
-   // Use the custom array we built
+   
 questions = FALLBACK_QUESTIONS;
 
 // Start the quiz immediately
@@ -233,19 +233,31 @@ startQuiz();
       }
     });
 
-    function finishQuiz() {
-      clearInterval(timerId);
-      els.quizPanel.style.display = 'none';
-      els.resultPanel.style.display = 'block';
-      const pct = Math.round((score / questions.length) * 100);
-      els.resultPercent.textContent = pct + '%';
-      els.resultFraction.textContent = `${score}/${questions.length}`;
-    }
+  function finishQuiz() {
+  clearInterval(timerId);
 
-    const retryBtn = document.getElementById('retryBtn');
-    if (retryBtn) {
-      retryBtn.addEventListener('click', () => window.location.reload());
-    }
+  const questionArea = document.getElementById('quizQuestionArea');
+  if (questionArea) {
+    questionArea.style.display = 'none';
+  }
+
+  const resultPanel = document.getElementById('resultPanel');
+  if (resultPanel) {
+    resultPanel.style.display = 'block';
+  }
+
+  const pct = Math.round((score / questions.length) * 100);
+  const resultPercent = document.getElementById('resultPercent');
+  const resultFraction = document.getElementById('resultFraction');
+
+  if (resultPercent) resultPercent.textContent = pct + '%';
+  if (resultFraction) resultFraction.textContent = `${score}/${questions.length}`;
+
+  const retryBtn = document.getElementById('retryBtn');
+  if (retryBtn) {
+    retryBtn.addEventListener('click', () => window.location.reload());
+  }
+}
   }
 
 });/* ---------------------------------------------------------
