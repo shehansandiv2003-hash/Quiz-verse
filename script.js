@@ -248,4 +248,43 @@ startQuiz();
     }
   }
 
-});
+});/* ---------------------------------------------------------
+     FEATURE 3: Contact form validation (real-time feedback)
+  --------------------------------------------------------- */
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const fields = {
+      name: { el: document.getElementById('cfName'), rule: (v) => v.trim().length >= 2 },
+      email: { el: document.getElementById('cfEmail'), rule: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      topic: { el: document.getElementById('cfTopic'), rule: (v) => v.trim().length >= 3 },
+      message: { el: document.getElementById('cfMessage'), rule: (v) => v.trim().length >= 10 }
+    };
+
+    function validateField(key) {
+      const field = fields[key];
+      const valid = field.rule(field.el.value);
+      const feedback = field.el.parentElement.querySelector('.invalid-feedback-qv');
+      field.el.classList.toggle('is-invalid', !valid);
+      if (feedback) feedback.classList.toggle('show', !valid);
+      return valid;
+    }
+
+    Object.keys(fields).forEach(function (key) {
+      fields[key].el.addEventListener('input', function () { validateField(key); });
+    });
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const allValid = Object.keys(fields)
+        .map(validateField)
+        .every(Boolean);
+
+      if (allValid) {
+        contactForm.reset();
+        document.getElementById('formSuccessMsg').style.display = 'block';
+        setTimeout(function () {
+          document.getElementById('formSuccessMsg').style.display = 'none';
+        }, 4000);
+      }
+    });
+  }
