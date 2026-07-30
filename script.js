@@ -79,8 +79,7 @@ const FALLBACK_QUESTIONS = [
    
 questions = FALLBACK_QUESTIONS;
 
-// Start the quiz immediately
-startQuiz();
+
 
     function startQuiz() {
       if (els.loadingMsg) els.loadingMsg.style.display = 'none';
@@ -258,6 +257,8 @@ startQuiz();
     retryBtn.addEventListener('click', () => window.location.reload());
   }
 }
+// Start the quiz immediately
+startQuiz();
   }
 
 });/* ---------------------------------------------------------

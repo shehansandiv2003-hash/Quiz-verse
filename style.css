@@ -141,18 +141,19 @@ a { text-decoration: none; }
   inset: 0;
   border: 1px solid var(--border);
   border-radius: 50%;
+  animation: spin 30s linear infinite;
 }
 
 .orbit-ring.ring-2 {
   inset: 14%;
   border-color: rgba(124, 158, 255, 0.35);
-  animation: spin 18s linear infinite;
+  animation: spin 20s linear infinite reverse;
 }
 
 .orbit-ring.ring-3 {
   inset: 30%;
   border-color: rgba(255, 184, 77, 0.35);
-  animation: spin 12s linear infinite reverse;
+  animation: spin 12s linear infinite;
 }
 
 .orbit-core {
