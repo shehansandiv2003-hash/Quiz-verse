@@ -1,5 +1,7 @@
 # Quiz-verse
 Web Technologies Pair Project
+K.H.S.S.J.WICKRAMASOORIYA -ITT/2024/117-2802
+W.D.D.M.WEERASINGHE-ITT/2024/115-2800
 ## ​Description
 
 ​*Quiz Verse is a web-based trivia application that dynamically pulls questions from a database, tracks each player's score in real time, and gives instant, informative feedback after every answer. Rather than hard-coding a fixed list of questions, the application generates quizzes dynamically, making every session feel fresh and replayable. 
