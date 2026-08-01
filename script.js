@@ -1,7 +1,4 @@
-/* =========================================================
-   Quiz-Verse — script.js
-   page index.
-   ========================================================= */
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -17,9 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-/* ---------------------------------------------------------
-     FEATURE 2: Quiz engine
-  --------------------------------------------------------- */
   const quizRoot = document.getElementById('quizRoot');
   if (quizRoot) initQuiz();
 
@@ -183,7 +177,6 @@ questions = FALLBACK_QUESTIONS;
       els.scoreBar.style.width = pct + '%';
     }
 
-    // FEATURE: Timer per question with auto-submit on time-out
     const RING_CIRCUMFERENCE = 2 * Math.PI * 54; 
 
     function startTimer() {
@@ -257,13 +250,11 @@ questions = FALLBACK_QUESTIONS;
     retryBtn.addEventListener('click', () => window.location.reload());
   }
 }
-// Start the quiz immediately
 startQuiz();
   }
 
-});/* ---------------------------------------------------------
-     FEATURE 3: Contact form validation (real-time feedback)
-  --------------------------------------------------------- */
+});
+
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     const fields = {

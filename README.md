@@ -2,7 +2,7 @@
 Web Technologies Pair Project
 ## ​Description
 
-​*Quiz Verse is a web-based trivia application that dynamically pulls questions from an external API and/or database, tracks each player's score in real time, and gives instant, informative feedback after every answer. Rather than hard-coding a fixed list of questions, the application generates quizzes dynamically, making every session feel fresh and replayable. 
+​*Quiz Verse is a web-based trivia application that dynamically pulls questions from a database, tracks each player's score in real time, and gives instant, informative feedback after every answer. Rather than hard-coding a fixed list of questions, the application generates quizzes dynamically, making every session feel fresh and replayable. 
 
 **​Project Goals**
 
@@ -16,7 +16,7 @@ Web Technologies Pair Project
 
 **​Planned Features**
 
-​-Dynamic Question Generation: Questions are fetched dynamically from a trivia API (e.g., Open Trivia Database) or a database, with configurable category and difficulty.
+​-Dynamic Question Generation: Questions are fetched dynamically from a database, with configurable category and difficulty.
 
 -Score Tracking: Tracks the player's score in real time as questions are answered and stores results for review.
 

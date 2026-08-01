@@ -13,7 +13,6 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- ============ NAVBAR ============ -->
   <nav class="navbar navbar-expand-lg navbar-qv sticky-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -37,7 +36,6 @@
 
     <p id="quizLoading" class="text-center text-muted">Loading questions&hellip; </p>
 
-    <!-- ============ QUIZ PANEL ============ -->
     <div id="quizPanel">
 
       
@@ -47,10 +45,9 @@
 
       <div class="row g-4 align-items-start">
         
-        <!-- ================= LEFT COLUMN ================= -->
+      
         <div class="col-lg-7">
           
-          <!-- 1. ACTIVE QUESTION AREA  -->
           <div id="quizQuestionArea">
             <p id="qNumber" class="text-muted small text-uppercase mb-2">Question 1 of 10</p>
             <h2 id="qText" class="h5 mb-4 fw-semibold mt-3"></h2>
@@ -62,7 +59,6 @@
             </div>
           </div>
 
-          <!-- 2. RESULT PANEL (Visible right now for testing) -->
           <div id="resultPanel" class="text-center mt-5" style="display:none;"> 
             <div class="qv-card mx-auto" style="padding: 3rem 1.5rem;">
               
@@ -85,10 +81,8 @@
 
         </div> <!-- END OF LEFT COLUMN -->
 
-        <!-- ================= RIGHT COLUMN ================= -->
         <div class="col-lg-5">
-          
-          <!-- Timer Panel -->
+
           <div class="qv-card mb-4 text-center">
             <p class="text-muted small text-uppercase mb-3">Time left</p>
             <div class="timer-ring-wrap mx-auto position-relative" style="width: 130px; height: 130px;">
@@ -107,7 +101,6 @@
 
     
           
-          <!-- Live Score Panel -->
           <div class="qv-card mb-4">
             <div class="d-flex justify-content-between small text-muted mb-2">
               <span class="text-uppercase">Live score</span>
@@ -121,7 +114,6 @@
             </div>
           </div>
 
-          <!-- Jump to Question Grid -->
           <div class="qv-card ">
             <p class="text-muted small text-uppercase mb-3">Jump to question</p>
             <div id="questionNav" class="d-flex flex-wrap gap-2">
@@ -144,7 +136,6 @@
     </div> 
   </main>
 
-  <!-- ============ FOOTER ============ -->
  <footer>
   <div class="container d-flex justify-content-between align-items-center py-3">
     <p class="small mb-0">&copy; 2026 Quiz-Verse</p>
