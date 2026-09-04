@@ -9,13 +9,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-qv sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.php">
         <span class="brand-mark"><span></span></span> Quiz-Verse
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
@@ -23,10 +23,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navMain">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
           <li class="nav-item"><a class="nav-link js-scroll" href="#categories">Categories</a></li>
           <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#leaderboardModal">Leaderboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
         </ul>
         <div class="d-flex gap-2">
           <button type="button" class="btn btn-outline-qv btn-sm px-3" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
@@ -203,7 +203,7 @@
 </div>
     </div>
   </footer>
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+ <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
         <div class="modal-header" style="border-bottom-color: var(--border);">
@@ -211,16 +211,51 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <!-- UPDATED: action and method added here -->
+          <form action="auth/login.php" method="POST">
             <div class="mb-3">
               <label for="loginEmail" class="form-label text-muted">Email address</label>
-              <input type="email" class="form-control form-control-qv" id="loginEmail" placeholder="name@example.com">
+              <!-- UPDATED: name="email" and required added -->
+              <input type="email" class="form-control form-control-qv" id="loginEmail" name="email" placeholder="name@example.com" required>
             </div>
             <div class="mb-3">
               <label for="loginPassword" class="form-label text-muted">Password</label>
-              <input type="password" class="form-control form-control-qv" id="loginPassword">
+              <!-- UPDATED: name="password" and required added -->
+              <input type="password" class="form-control form-control-qv" id="loginPassword" name="password" required>
             </div>
             <button type="submit" class="btn btn-accent w-100 mt-3">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
+        <div class="modal-header" style="border-bottom-color: var(--border);">
+          <h5 class="modal-title" id="signupModalLabel" style="font-family: 'Sora', sans-serif;">Create an Account</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- UPDATED: action and method added here -->
+          <form action="auth/register.php" method="POST">
+            <div class="mb-3">
+              <label for="signupName" class="form-label text-muted">Full Name</label>
+              <!-- UPDATED: name="username" and required added -->
+              <input type="text" class="form-control form-control-qv" id="signupName" name="username" placeholder="John Doe" required>
+            </div>
+            <div class="mb-3">
+              <label for="signupEmail" class="form-label text-muted">Email address</label>
+              <!-- UPDATED: name="email" and required added -->
+              <input type="email" class="form-control form-control-qv" id="signupEmail" name="email" placeholder="name@example.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="signupPassword" class="form-label text-muted">Password</label>
+              <!-- UPDATED: name="password" and required added -->
+              <input type="password" class="form-control form-control-qv" id="signupPassword" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-accent w-100 mt-3">Sign Up</button>
           </form>
         </div>
       </div>
@@ -271,6 +306,6 @@
     </div>
   </div>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -23,9 +23,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navMain">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="quiz.html">Quiz</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="quiz.php">Quiz</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
         </ul>
         <a href="index.html" class="btn btn-outline-qv btn-sm px-3">Exit Quiz</a>
       </div>
@@ -148,6 +148,6 @@
   </div>
 </footer>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
   </body>
   </html>

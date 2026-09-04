@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -23,9 +23,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-        <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="quiz.php">Quiz</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contact.php">Contact</a></li>
       </ul>
       <a href="#" class="btn btn-outline-qv btn-sm px-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</a>
       <a href="#" class="btn btn-accent btn-sm px-3" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>
@@ -193,6 +193,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
