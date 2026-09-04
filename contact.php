@@ -15,7 +15,7 @@
   
  <nav class="navbar navbar-expand-lg navbar-qv sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       <span class="brand-mark"><span></span></span> Quiz-Verse
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
