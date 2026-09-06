@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row g-5">
       
       <div class="col-lg-7">
-        <form id="contactForm" method="POST" novalidate>
+        <form action="contact.php" method="POST" novalidate>
           <div class="row g-3">
             <div class="col-md-6">
               <label for="cfName" class="form-label small text-muted text-uppercase">Name</label>
