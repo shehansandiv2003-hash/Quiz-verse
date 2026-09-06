@@ -1,3 +1,17 @@
+<?php
+// 1. Fetch Top 10 Scores for the Leaderboard Modal
+require_once 'includes/db.php';
+try {
+    $stmt = $pdo->query("SELECT users.username, quiz_scores.score 
+                         FROM quiz_scores 
+                         JOIN users ON quiz_scores.user_id = users.id 
+                         ORDER BY quiz_scores.score DESC 
+                         LIMIT 10");
+    $top10 = $stmt->fetchAll();
+} catch(PDOException $e) {
+    $top10 = []; // Failsafe if the database isn't ready
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +50,6 @@
     </div>
   </nav>
 
-
   <header class="hero">
     <div class="container">
       <div class="row align-items-center g-5">
@@ -53,25 +66,17 @@
         <div class="col-lg-6">
          <div class="orbit-wrap">
   
-  
-  <div class="orbit-ring">
-    <div class="orbit-dot" style="top: 0; left: 50%; transform: translate(-50%, -50%);"></div>
-  </div>
-
-  
-  <div class="orbit-ring ring-2">
-    <div class="orbit-dot" style="top: 50%; left: 0; transform: translate(-50%, -50%);"></div>
-  </div>
-
-  
-  <div class="orbit-ring ring-3">
-    <div class="orbit-dot" style="top: 100%; left: 50%; background: var(--accent); transform: translate(-50%, -50%);"></div>
-  </div>
-
-  
-  <div class="orbit-core"></div>
-
-</div>
+          <div class="orbit-ring">
+            <div class="orbit-dot" style="top: 0; left: 50%; transform: translate(-50%, -50%);"></div>
+          </div>
+          <div class="orbit-ring ring-2">
+            <div class="orbit-dot" style="top: 50%; left: 0; transform: translate(-50%, -50%);"></div>
+          </div>
+          <div class="orbit-ring ring-3">
+            <div class="orbit-dot" style="top: 100%; left: 50%; background: var(--accent); transform: translate(-50%, -50%);"></div>
+          </div>
+          <div class="orbit-core"></div>
+        </div>
         </div>
       </div>
     </div>
@@ -81,7 +86,7 @@
     <div class="container">
       <div class="row text-center g-3">
         <div class="col-6 col-md-3">
-          <div class="stat-num">150+</div><div class="stat-label">Quizzes</div>
+          <div class="stat-num">40+</div><div class="stat-label">Quizzes</div>
         </div>
         <div class="col-6 col-md-3">
           <div class="stat-num">4</div><div class="stat-label">Categories</div>
@@ -96,40 +101,56 @@
     </div>
   </section>
 
-  
   <section class="py-5" id="categories">
     <div class="container">
       <h2 class="section-title text-center">Popular categories</h2>
       <p class="section-sub text-center">Pick a topic to jump straight into a quiz</p>
       <div class="row g-4">
+        
+        <!-- GEOGRAPHY -->
         <div class="col-6 col-lg-3">
-          <div class="qv-card">
-            <div class="category-icon">GE</div>
-            <h3 class="h6 mb-1">Geography</h3>
-            <p class="text-muted small mb-0">Countries, capitals & landmarks</p>
-          </div>
+          <a href="quiz.php?category=geography" style="text-decoration: none; color: inherit;">
+            <div class="qv-card">
+              <div class="category-icon">GE</div>
+              <h3 class="h6 mb-1">Geography</h3>
+              <p class="text-muted small mb-0">Countries, capitals & landmarks</p>
+            </div>
+          </a>
         </div>
+
+        <!-- HISTORY -->
         <div class="col-6 col-lg-3">
-          <div class="qv-card">
-            <div class="category-icon">HI</div>
-            <h3 class="h6 mb-1">History</h3>
-            <p class="text-muted small mb-0">People, events & eras</p>
-          </div>
+          <a href="quiz.php?category=history" style="text-decoration: none; color: inherit;">
+            <div class="qv-card">
+              <div class="category-icon">HI</div>
+              <h3 class="h6 mb-1">History</h3>
+              <p class="text-muted small mb-0">People, events & eras</p>
+            </div>
+          </a>
         </div>
+
+        <!-- SCIENCE -->
         <div class="col-6 col-lg-3">
-          <div class="qv-card">
-            <div class="category-icon">SC</div>
-            <h3 class="h6 mb-1">Science</h3>
-            <p class="text-muted small mb-0">Space, biology & physics</p>
-          </div>
+          <a href="quiz.php?category=science" style="text-decoration: none; color: inherit;">
+            <div class="qv-card">
+              <div class="category-icon">SC</div>
+              <h3 class="h6 mb-1">Science</h3>
+              <p class="text-muted small mb-0">Space, biology & physics</p>
+            </div>
+          </a>
         </div>
+
+        <!-- ICT -->
         <div class="col-6 col-lg-3">
-          <div class="qv-card">
-            <div class="category-icon">IT</div>
-            <h3 class="h6 mb-1">ICT</h3>
-            <p class="text-muted small mb-0">Web, hardware & logic</p>
-          </div>
+          <a href="quiz.php?category=ict" style="text-decoration: none; color: inherit;">
+            <div class="qv-card">
+              <div class="category-icon">IT</div>
+              <h3 class="h6 mb-1">ICT</h3>
+              <p class="text-muted small mb-0">Web, hardware & logic</p>
+            </div>
+          </a>
         </div>
+
       </div>
     </div>
   </section>
@@ -190,20 +211,20 @@
         </div>
       </div>
       <hr style="border-color: var(--border);">
-    <div class="col-12 d-flex justify-content-between align-items-center pt-2">
-  <div class="col-12 d-flex justify-content-between align-items-center pt-2">
-  <p class="small mb-0">&copy; 2026 Quiz-Verse</p>
-  <div class="d-flex align-items-center gap-2">
-    <span class="text-muted small text-uppercase me-2">Follow us</span>
-    <a href="#" class="contact-icon d-inline-flex align-items-center justify-content-center text-decoration-none" style="width: 32px; height: 32px; font-size: 0.85rem;">f</a>
-    <a href="#" class="contact-icon d-inline-flex align-items-center justify-content-center text-decoration-none" style="width: 32px; height: 32px; font-size: 0.85rem;">x</a>
-    <a href="#" class="contact-icon d-inline-flex align-items-center justify-content-center text-decoration-none" style="width: 32px; height: 32px; font-size: 0.85rem;">in</a>
-  </div>
-</div>
-</div>
+      <div class="col-12 d-flex justify-content-between align-items-center pt-2">
+        <p class="small mb-0">&copy; 2026 Quiz-Verse</p>
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-muted small text-uppercase me-2">Follow us</span>
+          <a href="#" class="contact-icon d-inline-flex align-items-center justify-content-center text-decoration-none" style="width: 32px; height: 32px; font-size: 0.85rem;">f</a>
+          <a href="#" class="contact-icon d-inline-flex align-items-center justify-content-center text-decoration-none" style="width: 32px; height: 32px; font-size: 0.85rem;">x</a>
+          <a href="#" class="contact-icon d-inline-flex align-items-center justify-content-center text-decoration-none" style="width: 32px; height: 32px; font-size: 0.85rem;">in</a>
+        </div>
+      </div>
     </div>
   </footer>
- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
         <div class="modal-header" style="border-bottom-color: var(--border);">
@@ -211,16 +232,13 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- UPDATED: action and method added here -->
           <form action="auth/login.php" method="POST">
             <div class="mb-3">
               <label for="loginEmail" class="form-label text-muted">Email address</label>
-              <!-- UPDATED: name="email" and required added -->
               <input type="email" class="form-control form-control-qv" id="loginEmail" name="email" placeholder="name@example.com" required>
             </div>
             <div class="mb-3">
               <label for="loginPassword" class="form-label text-muted">Password</label>
-              <!-- UPDATED: name="password" and required added -->
               <input type="password" class="form-control form-control-qv" id="loginPassword" name="password" required>
             </div>
             <button type="submit" class="btn btn-accent w-100 mt-3">Login</button>
@@ -230,6 +248,7 @@
     </div>
   </div>
 
+  <!-- Signup Modal -->
   <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
@@ -238,21 +257,17 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- UPDATED: action and method added here -->
           <form action="auth/register.php" method="POST">
             <div class="mb-3">
               <label for="signupName" class="form-label text-muted">Full Name</label>
-              <!-- UPDATED: name="username" and required added -->
               <input type="text" class="form-control form-control-qv" id="signupName" name="username" placeholder="John Doe" required>
             </div>
             <div class="mb-3">
               <label for="signupEmail" class="form-label text-muted">Email address</label>
-              <!-- UPDATED: name="email" and required added -->
               <input type="email" class="form-control form-control-qv" id="signupEmail" name="email" placeholder="name@example.com" required>
             </div>
             <div class="mb-3">
               <label for="signupPassword" class="form-label text-muted">Password</label>
-              <!-- UPDATED: name="password" and required added -->
               <input type="password" class="form-control form-control-qv" id="signupPassword" name="password" required>
             </div>
             <button type="submit" class="btn btn-accent w-100 mt-3">Sign Up</button>
@@ -261,51 +276,46 @@
       </div>
     </div>
   </div>
-
-  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
-        <div class="modal-header" style="border-bottom-color: var(--border);">
-          <h5 class="modal-title" id="signupModalLabel" style="font-family: 'Sora', sans-serif;">Create an Account</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="signupName" class="form-label text-muted">Full Name</label>
-              <input type="text" class="form-control form-control-qv" id="signupName" placeholder="John Doe">
-            </div>
-            <div class="mb-3">
-              <label for="signupEmail" class="form-label text-muted">Email address</label>
-              <input type="email" class="form-control form-control-qv" id="signupEmail" placeholder="name@example.com">
-            </div>
-            <div class="mb-3">
-              <label for="signupPassword" class="form-label text-muted">Password</label>
-              <input type="password" class="form-control form-control-qv" id="signupPassword">
-            </div>
-            <button type="submit" class="btn btn-accent w-100 mt-3">Sign Up</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
   
+  <!-- Dynamic Leaderboard Modal -->
   <div class="modal fade" id="leaderboardModal" tabindex="-1" aria-labelledby="leaderboardModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
         <div class="modal-header" style="border-bottom-color: var(--border);">
-          <h5 class="modal-title" id="leaderboardModalLabel" style="font-family: 'Sora', sans-serif;">Top Explorers</h5>
+          <h5 class="modal-title" id="leaderboardModalLabel" style="font-family: 'Sora', sans-serif; color: var(--accent);">🏆 Top 10 Explorers</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body text-center py-5">
-          <h4 class="text-white mb-3">Leaderboard Coming Soon!</h4>
-          <p class="text-muted">Keep practicing your quizzes to secure your spot at the top.</p>
-          <button type="button" class="btn btn-outline-qv mt-3" data-bs-dismiss="modal">Close</button>
+        <div class="modal-body p-0">
+          <table class="table table-dark table-hover mb-0 text-center" style="background-color: transparent;">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($top10)): ?>
+                    <?php $rank = 1; foreach ($top10 as $row): ?>
+                        <tr>
+                            <td>#<?= $rank++ ?></td>
+                            <td><?= htmlspecialchars($row['username']) ?></td>
+                            <td style="color: var(--accent); font-weight: bold;"><?= htmlspecialchars($row['score']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3" class="text-muted py-3">No scores yet. Be the first!</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

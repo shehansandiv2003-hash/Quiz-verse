@@ -82,9 +82,10 @@ if (!selectedCategory || !CATEGORIZED_QUESTIONS[selectedCategory]) {
     selectedCategory = 'ict'; 
 }
 
-// 4. Assign the filtered category to your original variable
-const FALLBACK_QUESTIONS = CATEGORIZED_QUESTIONS[selectedCategory];
-        let questions = [];
+// 4. Assign and SHUFFLE the questions so they are random every time!
+const FALLBACK_QUESTIONS = [...CATEGORIZED_QUESTIONS[selectedCategory]].sort(() => Math.random() - 0.5);
+
+    let questions = [];
     let current = 0;
     let score = 0;
     let timeLeft = QUESTION_TIME;
