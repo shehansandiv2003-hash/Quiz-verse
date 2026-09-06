@@ -1,14 +1,15 @@
 <?php
-// 1. Connect to the database (Notice the path is just 'includes/db.php' here)
+// 1. Connect to the database and functions
 require_once 'includes/db.php';
+require_once 'includes/functions.php'; // <-- 1. ADD THIS LINE HERE
 
 // 2. Check if the contact form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // 3. Grab the data from the form
-    $name = $_POST['name']; 
-    $email = $_POST['email'];
-    $message = $_POST['message'];
+    // 3. Grab the data from the form and sanitize it
+    $name = sanitizeInput($_POST['name']);       // <-- 2. UPDATE THIS LINE
+    $email = sanitizeInput($_POST['email']);     // <-- 3. UPDATE THIS LINE
+    $message = sanitizeInput($_POST['message']); // <-- 4. UPDATE THIS LINE
 
     try {
         // 4. Securely insert the message into the database
