@@ -46,7 +46,7 @@ try {
         
         <h1 class="mb-3" style="color: #FF8C00;">Welcome to the Quiz-Verse Dashboard!</h1>
         <p class="lead mb-5" style="color: #bdc3c7;">You are successfully authenticated and securely logged in.</p>
-        
+       <img src="images/galaxy.svg" alt="Quiz-Verse Galaxy" class="img-fluid mt-4 mb-5 shadow rounded" style="max-width: 400px;">
         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-5">
             <a href="quiz.php" class="btn btn-lg px-4 gap-3 text-dark fw-bold" style="background-color: #FF8C00; border: none;">Start the Quiz</a>
             <a href="logout.php" class="btn btn-outline-light btn-lg px-4">Log Out</a>
