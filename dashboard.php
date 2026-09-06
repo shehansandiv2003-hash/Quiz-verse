@@ -49,7 +49,7 @@ try {
 <img src="images/galaxy.svg" alt="Quiz-Verse Galaxy" class="img-fluid mt-4 mb-5 shadow rounded" style="max-width: 400px;">
 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-5">
  <a href="quiz.php" class="btn btn-lg px-4 gap-3 text-dark fw-bold" style="background-color: #FF8C00; border: none;">Start the Quiz</a>
-<a href="logout.php" class="btn btn-outline-light btn-lg px-4">Log Out</a>
+<a href="auth/logout.php" class="btn btn-outline-light btn-lg px-4">Log Out</a>
 </div>
 
 <div class="row justify-content-center mt-5">
