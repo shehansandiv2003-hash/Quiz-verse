@@ -1,3 +1,34 @@
+<?php
+// 1. Connect to the database (Notice the path is just 'includes/db.php' here)
+require_once 'includes/db.php';
+
+// 2. Check if the contact form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    // 3. Grab the data from the form
+    $name = $_POST['name']; 
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    try {
+        // 4. Securely insert the message into the database
+        $sql = "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        
+        if ($stmt->execute([$name, $email, $message])) {
+            echo "<script>
+                alert('Message sent successfully! We will get back to you soon.');
+                window.location.href = 'contact.php';
+            </script>";
+        }
+    } catch(PDOException $e) {
+        echo "<script>
+            alert('Oops! Something went wrong. Please try again.');
+            window.location.href = 'contact.php';
+        </script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,26 +74,26 @@
     <div class="row g-5">
       
       <div class="col-lg-7">
-        <form id="contactForm" novalidate>
+        <form id="contactForm" method="POST" novalidate>
           <div class="row g-3">
             <div class="col-md-6">
               <label for="cfName" class="form-label small text-muted text-uppercase">Name</label>
-              <input type="text" id="cfName" class="form-control form-control-qv" placeholder="Your name">
+              <input type="text" name="name" id="cfName" class="form-control form-control-qv" placeholder="Your name">
               <div class="invalid-feedback-qv">Please enter at least 2 characters.</div>
             </div>
             <div class="col-md-6">
               <label for="cfEmail" class="form-label small text-muted text-uppercase">Email</label>
-              <input type="email" id="cfEmail" class="form-control form-control-qv" placeholder="you@example.com">
+              <input type="email" name="email" id="cfEmail" class="form-control form-control-qv" placeholder="you@example.com">
               <div class="invalid-feedback-qv">Please enter a valid email address.</div>
             </div>
             <div class="col-12">
               <label for="cfTopic" class="form-label small text-muted text-uppercase">Topic</label>
-              <input type="text" id="cfTopic" class="form-control form-control-qv" placeholder="What's this about?">
+              <input type="text"  id="cfTopic" class="form-control form-control-qv" placeholder="What's this about?">
               <div class="invalid-feedback-qv">Please enter a short topic.</div>
             </div>
             <div class="col-12">
               <label for="cfMessage" class="form-label small text-muted text-uppercase">Message</label>
-              <textarea id="cfMessage" rows="5" class="form-control form-control-qv" placeholder="Tell us more..."></textarea>
+              <textarea name="message" id="cfMessage" rows="5" class="form-control form-control-qv" placeholder="Tell us more..."></textarea>
               <div class="invalid-feedback-qv">Please enter at least 10 characters.</div>
             </div>
             <div class="col-12">
