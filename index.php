@@ -45,7 +45,7 @@
           <h1>Explore the whole universe of knowledge, one quiz at a time.</h1>
           <p class="lead my-3">Pick a category, answer against the clock, and see exactly how you scored — every game is generated fresh, so there's always something new to play.</p>
           <div class="d-flex flex-wrap gap-3 mt-4">
-            <a href="quiz.html" class="btn btn-accent px-4 py-2">Start a Quiz</a>
+            <a href="quiz.php" class="btn btn-accent px-4 py-2">Start a Quiz</a>
             <a href="#categories" class="btn btn-outline-qv px-4 py-2 js-scroll">Browse Categories</a>
           </div>
           <p class="text-muted small mt-3">1,200+ players already exploring</p>
@@ -156,7 +156,7 @@
         </div>
       </div>
       <div class="text-center mt-4">
-        <a href="quiz.html" class="btn btn-accent px-4 py-2">Start a Quiz</a>
+        <a href="quiz.php" class="btn btn-accent px-4 py-2">Start a Quiz</a>
       </div>
     </div>
   </section>
@@ -165,7 +165,7 @@
     <div class="container">
       <div class="cta-band">
         <h2 class="mb-3">Ready to test what you know?</h2>
-        <a href="quiz.html" class="btn btn-accent px-4 py-2">Start a Quiz</a>
+        <a href="quiz.php" class="btn btn-accent px-4 py-2">Start a Quiz</a>
       </div>
     </div>
   </section>
@@ -174,19 +174,19 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-md-6">
-          <a class="navbar-brand" href="index.html"><span class="brand-mark"><span></span></span> Quiz-Verse</a>
+          <a class="navbar-brand" href="index.php"><span class="brand-mark"><span></span></span> Quiz-Verse</a>
           <p class="small mt-2">A mini project exploring dynamic trivia and timed quizzes.</p>
         </div>
         <div class="col-6 col-md-3">
           <h3 class="h6 text-light">Explore</h3>
-          <p class="small mb-1"><a href="index.html">Home</a></p>
+          <p class="small mb-1"><a href="index.php">Home</a></p>
           <p class="small mb-1"><a href="#categories" class="js-scroll">Categories</a></p>
           <p class="small mb-1"><a href="#" data-bs-toggle="modal" data-bs-target="#leaderboardModal">Leaderboard</a></p>
         </div>
         <div class="col-6 col-md-3">
           <h3 class="h6 text-light">Support</h3>
-          <p class="small mb-1"><a href="contact.html">Contact Us</a></p>
-          <p class="small mb-1"><a href="contact.html#faq">FAQ</a></p>
+          <p class="small mb-1"><a href="contact.php">Contact Us</a></p>
+          <p class="small mb-1"><a href="contact.php#faq">FAQ</a></p>
         </div>
       </div>
       <hr style="border-color: var(--border);">

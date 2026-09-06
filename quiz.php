@@ -27,7 +27,7 @@
           <li class="nav-item"><a class="nav-link active" href="quiz.php">Quiz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
         </ul>
-        <a href="index.html" class="btn btn-outline-qv btn-sm px-3">Exit Quiz</a>
+        <a href="index.php" class="btn btn-outline-qv btn-sm px-3">Exit Quiz</a>
       </div>
     </div>
   </nav>
@@ -73,7 +73,7 @@
               
               <div class="d-flex justify-content-center gap-3">
                 <button id="retryBtn" class="btn btn-outline-qv px-4">Try Another Quiz</button>
-                <a href="index.html" class="btn btn-accent text-white px-4">Back Home</a>
+                <a href="index.php" class="btn btn-accent text-white px-4">Back Home</a>
               </div>
 
             </div>
