@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const QUESTION_TIME = 20;
     const TOTAL_QUESTIONS = 10;
  
-// 1. Group 40 questions by category using your exact format
+
 const CATEGORIZED_QUESTIONS = {
     geography: [
         { question: 'Which is the largest ocean on Earth?', correct_answer: 'Pacific Ocean', incorrect_answers: ['Atlantic Ocean', 'Indian Ocean', 'Arctic Ocean'] },
@@ -73,16 +73,15 @@ const CATEGORIZED_QUESTIONS = {
     ]
 };
 
-// 2. Check the URL for the clicked category (e.g., ?category=science)
+
 const urlParams = new URLSearchParams(window.location.search);
 let selectedCategory = urlParams.get('category');
 
-// 3. Failsafe: Default to 'ict' if the category is missing or typed incorrectly
 if (!selectedCategory || !CATEGORIZED_QUESTIONS[selectedCategory]) {
     selectedCategory = 'ict'; 
 }
 
-// 4. Assign and SHUFFLE the questions so they are random every time!
+
 const FALLBACK_QUESTIONS = [...CATEGORIZED_QUESTIONS[selectedCategory]].sort(() => Math.random() - 0.5);
 
     let questions = [];
@@ -296,6 +295,19 @@ questions = FALLBACK_QUESTIONS;
 
   if (resultPercent) resultPercent.textContent = pct + '%';
   if (resultFraction) resultFraction.textContent = `${score}/${questions.length}`;
+
+  
+  fetch('quiz.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+   body: 'action=save_score&score=' + score
+  })
+  .then(response => response.text())
+  .then(data => console.log("Database Response: ", data))
+  .catch(error => console.error('Error:', error));
+  
 
   const retryBtn = document.getElementById('retryBtn');
   if (retryBtn) {

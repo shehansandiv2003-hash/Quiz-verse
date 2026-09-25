@@ -1,5 +1,6 @@
 <?php
-// 1. Fetch Top 10 Scores for the Leaderboard Modal
+session_start();
+
 require_once 'includes/db.php';
 try {
     $stmt = $pdo->query("SELECT users.username, quiz_scores.score 
@@ -9,7 +10,7 @@ try {
                          LIMIT 10");
     $top10 = $stmt->fetchAll();
 } catch(PDOException $e) {
-    $top10 = []; // Failsafe if the database isn't ready
+    $top10 = []; 
 }
 ?>
 <!DOCTYPE html>
@@ -43,8 +44,15 @@ try {
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
         </ul>
         <div class="d-flex gap-2">
-          <button type="button" class="btn btn-outline-qv btn-sm px-3" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
-          <button type="button" class="btn btn-accent btn-sm px-3" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+          <?php if (isset($_SESSION['user_id'])): ?>
+            
+            <a href="dashboard.php" class="btn btn-outline-qv btn-sm px-3">Dashboard</a>
+            <a href="auth/logout.php" class="btn btn-accent btn-sm px-3">Log Out</a>
+          <?php else: ?>
+            
+            <button type="button" class="btn btn-outline-qv btn-sm px-3" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
+            <button type="button" class="btn btn-accent btn-sm px-3" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</button>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -54,7 +62,7 @@ try {
     <div class="container">
       <div class="row align-items-center g-5">
         <div class="col-lg-6">
-          <span class="eyebrow">150+ QUIZZES</span>
+          <span class="eyebrow">40+ QUIZZES</span>
           <h1>Explore the whole universe of knowledge, one quiz at a time.</h1>
           <p class="lead my-3">Pick a category, answer against the clock, and see exactly how you scored — every game is generated fresh, so there's always something new to play.</p>
           <div class="d-flex flex-wrap gap-3 mt-4">
@@ -107,7 +115,7 @@ try {
       <p class="section-sub text-center">Pick a topic to jump straight into a quiz</p>
       <div class="row g-4">
         
-        <!-- GEOGRAPHY -->
+        
         <div class="col-6 col-lg-3">
           <a href="quiz.php?category=geography" style="text-decoration: none; color: inherit;">
             <div class="qv-card">
@@ -118,7 +126,7 @@ try {
           </a>
         </div>
 
-        <!-- HISTORY -->
+        
         <div class="col-6 col-lg-3">
           <a href="quiz.php?category=history" style="text-decoration: none; color: inherit;">
             <div class="qv-card">
@@ -129,7 +137,7 @@ try {
           </a>
         </div>
 
-        <!-- SCIENCE -->
+        
         <div class="col-6 col-lg-3">
           <a href="quiz.php?category=science" style="text-decoration: none; color: inherit;">
             <div class="qv-card">
@@ -140,7 +148,7 @@ try {
           </a>
         </div>
 
-        <!-- ICT -->
+        
         <div class="col-6 col-lg-3">
           <a href="quiz.php?category=ict" style="text-decoration: none; color: inherit;">
             <div class="qv-card">
@@ -176,10 +184,6 @@ try {
           <p class="text-muted small">See your result and climb the leaderboard.</p>
         </div>
       </div>
-      <div class="text-center mt-4">
-        <a href="quiz.php" class="btn btn-accent px-4 py-2">Start a Quiz</a>
-      </div>
-    </div>
   </section>
 
   <section class="py-5">
@@ -223,7 +227,7 @@ try {
     </div>
   </footer>
 
-  <!-- Login Modal -->
+  
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
@@ -248,7 +252,7 @@ try {
     </div>
   </div>
 
-  <!-- Signup Modal -->
+  
   <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">
@@ -277,7 +281,7 @@ try {
     </div>
   </div>
   
-  <!-- Dynamic Leaderboard Modal -->
+  
   <div class="modal fade" id="leaderboardModal" tabindex="-1" aria-labelledby="leaderboardModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--bg-card); border-color: var(--border);">

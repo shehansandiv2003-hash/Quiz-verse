@@ -3,13 +3,12 @@ session_start();
 require_once 'includes/functions.php';
 require_once 'includes/db.php'; 
 
-// Protect the page: kick them out if they are not logged in!
+
 if (!isLoggedIn()) {
     header("Location: login.php");
     exit();
 }
 
-// Fetch the Top 5 scores for the dashboard leaderboard
 try {
     $sql = "SELECT users.username, quiz_scores.score 
             FROM quiz_scores 
@@ -37,7 +36,7 @@ try {
 
 <div class="container mt-5 text-center py-5">
         
-<!-- INLINE AVATAR SVG (Guaranteed to load instantly) -->
+
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" class="rounded-circle mb-4 shadow">
 <circle cx="60" cy="60" r="60" fill="#0D1B2A" stroke="#FF8C00" stroke-width="6"/>
 <circle cx="60" cy="45" r="24" fill="#FF8C00"/>
@@ -58,7 +57,7 @@ try {
 <div class="card-header border-secondary text-center py-3">
 <h4 class="mb-0 d-flex align-items-center justify-content-center" style="color: #FF8C00;">
                             
-<!-- INLINE TROPHY SVG (Guaranteed to load instantly) -->
+
 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#FF8C00" viewBox="0 0 16 16" style="margin-right: 12px;">
 <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.521c.16-.12.343-.207.537-.255l1.425-.356v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935z"/>
 </svg>
@@ -67,7 +66,7 @@ try {
 </h4>
  </div>
 <div class="card-body p-0">
-<!-- Added specific inline styles to completely strip out the white background -->
+
 <table class="table table-dark table-hover mb-0 text-center" style="--bs-table-bg: transparent; color: white;">
 <thead>
 <tr>

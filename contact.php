@@ -1,18 +1,19 @@
 <?php
-// 1. Connect to the database and functions
-require_once 'includes/db.php';
-require_once 'includes/functions.php'; // <-- 1. ADD THIS LINE HERE
+session_start();
 
-// 2. Check if the contact form was submitted
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // 3. Grab the data from the form and sanitize it
-    $name = sanitizeInput($_POST['name']);       // <-- 2. UPDATE THIS LINE
-    $email = sanitizeInput($_POST['email']);     // <-- 3. UPDATE THIS LINE
-    $message = sanitizeInput($_POST['message']); // <-- 4. UPDATE THIS LINE
+    
+    $name = sanitizeInput($_POST['name']);       
+    $email = sanitizeInput($_POST['email']);     
+    $message = sanitizeInput($_POST['message']); 
 
     try {
-        // 4. Securely insert the message into the database
+
         $sql = "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         
@@ -41,10 +42,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
   
+  <style>
+    
+    .accordion-button::after {
+      background-image: none !important;
+      content: '+' !important;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .accordion-button:not(.collapsed)::after {
+      content: '-' !important;
+      transform: none !important;
+    }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
  <nav class="navbar navbar-expand-lg navbar-qv sticky-top">
   <div class="container">
     <a class="navbar-brand" href="index.php">
@@ -59,20 +74,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <li class="nav-item"><a class="nav-link" href="quiz.php">Quiz</a></li>
         <li class="nav-item"><a class="nav-link active" href="contact.php">Contact</a></li>
       </ul>
-      <a href="#" class="btn btn-outline-qv btn-sm px-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</a>
-      <a href="#" class="btn btn-accent btn-sm px-3" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>
+      
+      <div class="d-flex gap-2">
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <a href="dashboard.php" class="btn btn-outline-qv btn-sm px-3">Dashboard</a>
+          <a href="auth/logout.php" class="btn btn-accent btn-sm px-3">Log Out</a>
+        <?php else: ?>
+          <a href="#" class="btn btn-outline-qv btn-sm px-3" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</a>
+          <a href="#" class="btn btn-accent btn-sm px-3" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>
+        <?php endif; ?>
+      </div>
+
     </div>
   </div>
 </nav>
-  
 
-  <main class="container py-5">
+  <main class="container py-5 flex-grow-1">
     <div class="text-center mb-5">
       <h1 class="h3">Get in touch</h1>
       <p class="text-muted">Question, feedback, or a bug report about Quiz-Verse? Send us a message and we'll get back to you.</p>
     </div>
 
     <div class="row g-5">
+      
       
       <div class="col-lg-7">
         <form action="contact.php" method="POST" novalidate>
@@ -103,8 +127,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
           </div>
         </form>
-      </div>
 
+
+        <div class="mt-5 pt-4">
+          <h2 class="h5 mb-3">Our Location</h2>
+          <div class="qv-card p-0 overflow-hidden">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15797.77!2d80.505!3d8.351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xafc9c5d123456789%3A0x123456789abcdef!2sMihintale%2C+Sri+Lanka!5e0!3m2!1sen!2slk!4v1650000000000!5m2!1sen!2slk" width="100%" height="320" style="border:0; border-radius: 12px; display: block;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+
+      </div> 
+
+      
       <div class="col-lg-5">
         <p class="text-muted small text-uppercase mb-3">Contact details</p>
 
@@ -130,47 +164,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
 
-        <p class="text-muted small text-uppercase mb-2 mt-4">Map</p>
-        <div class="qv-card p-0 overflow-hidden" style="min-height:60px;">
-          <span class="text-muted small"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15797.77!2d80.505!3d8.351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xafc9c5d123456789%3A0x123456789abcdef!2sMihintale%2C+Sri+Lanka!5e0!3m2!1sen!2slk!4v1650000000000!5m2!1sen!2slk" width="100%" height="100%" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe></span>
+        <div class="mt-5 pt-4" id="faq">
+          <h2 class="h5 mb-3">Quick FAQ</h2>
+          <div class="accordion accordion-flush" id="faqAccordion">
+            
+            <div class="accordion-item bg-transparent border-bottom border-secondary">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed bg-transparent text-light shadow-none px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  How do I create my own quiz?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted small px-0">
+                  Sign up, choose "Create Quiz" from your dashboard, then add your own questions and answers to a new category.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-bottom border-secondary">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed bg-transparent text-light shadow-none px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Is Quiz-Verse free to use?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted small px-0">
+                  Yes all core features, including unlimited quizzes and the leaderboard, are completely free.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-bottom border-secondary">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed bg-transparent text-light shadow-none px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  How is my score calculated?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted small px-0">
+                  You earn one point per correct answer, plus small speed bonuses for answering well before the timer runs out.
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </div> 
 
-      
-      </div>
-    </div>
-
-    
-    <div class="mt-5 pt-4" id="faq" style="max-width: 700px;">
-      <h2 class="h5 mb-3">Quick FAQ</h2>
-
-      <div class="faq-item">
-        <div class="faq-question">How do I create my own quiz? <span class="plus">+</span></div>
-        <div class="faq-answer"><p>Sign up, choose "Create Quiz" from your dashboard, then add your own questions and answers to a new category.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">Is Quiz-Verse free to use? <span class="plus">+</span></div>
-        <div class="faq-answer"><p>Yes — all core features, including unlimited quizzes and the leaderboard, are completely free.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">How is my score calculated? <span class="plus">+</span></div>
-        <div class="faq-answer"><p>You earn one point per correct answer, plus small speed bonuses for answering well before the timer runs out.</p></div>
-      </div>
     </div>
   </main>
 
-  <footer>
-  <div class="container d-flex justify-content-between align-items-center py-3">
-    <p class="small mb-0">&copy; 2026 Quiz-Verse</p>
-    <div class="d-flex align-items-center gap-2">
-      <span class="text-muted small text-uppercase me-2">Follow us</span>
-      <a href="#" class="contact-icon" style="width: 32px; height: 32px; font-size: 0.85rem;">f</a>
-      <a href="#" class="contact-icon" style="width: 32px; height: 32px; font-size: 0.85rem;">x</a>
-      <a href="#" class="contact-icon" style="width: 32px; height: 32px; font-size: 0.85rem;">in</a>
+  
+  <footer class="mt-auto">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+      <p class="small mb-0">&copy; 2026 Quiz-Verse</p>
+      <div class="d-flex align-items-center gap-2">
+        <span class="text-muted small text-uppercase me-2">Follow us</span>
+        <a href="#" class="contact-icon" style="width: 32px; height: 32px; font-size: 0.85rem;">f</a>
+        <a href="#" class="contact-icon" style="width: 32px; height: 32px; font-size: 0.85rem;">x</a>
+        <a href="#" class="contact-icon" style="width: 32px; height: 32px; font-size: 0.85rem;">in</a>
+      </div>
     </div>
-  </div>
-</footer> 
+  </footer> 
  
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -180,14 +235,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="auth/login.php" method="POST">
             <div class="mb-3">
               <label for="loginEmail" class="form-label text-muted">Email address</label>
-              <input type="email" class="form-control form-control-qv" id="loginEmail" placeholder="name@example.com">
+              <input type="email" name="email" class="form-control form-control-qv" id="loginEmail" placeholder="name@example.com" required>
             </div>
             <div class="mb-3">
               <label for="loginPassword" class="form-label text-muted">Password</label>
-              <input type="password" class="form-control form-control-qv" id="loginPassword">
+              <input type="password" name="password" class="form-control form-control-qv" id="loginPassword" required>
             </div>
             <button type="submit" class="btn btn-accent w-100 mt-3">Login</button>
           </form>

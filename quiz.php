@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+
+if (isset($_POST['action']) && $_POST['action'] === 'save_score') {
+    
+    $conn = new mysqli('localhost', 'root', '', 'quiz_verse');
+    
+    if ($conn->connect_error) {
+        die("Database connection failed.");
+    }
+
+    
+   if (isset($_SESSION['user_id']) && isset($_POST['score'])) {
+        $user_id = $_SESSION['user_id'];
+        $score = $_POST['score'];
+
+
+        $stmt = $conn->prepare("INSERT INTO quiz_scores (user_id, score) VALUES (?, ?)");
+        $stmt->bind_param("ii", $user_id, $score);
+        $stmt->execute();
+        $stmt->close();
+        
+        echo "Score saved successfully!";
+    } else {
+        echo "Error: User not logged in.";
+    }
+    
+    $conn->close();
+    exit(); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,8 +181,8 @@
 </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- THE CACHE BUSTER FIX IS RIGHT HERE -->
-  <script src="js/script.js?v=2"></script>
+  
+  <script src="js/script.js?v=5"></script>
 
 </body>
 </html>
